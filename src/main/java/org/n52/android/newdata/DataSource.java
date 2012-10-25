@@ -13,10 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.n52.android.newdata;
 
-import android.location.Location;
+import java.util.List;
 
-public interface LocationUpdateListener {
-    void devicePositionUpdate(Location l, boolean changeViewToAR);
+/**
+ * Interface describing a measurement data source
+ * 
+ * @author Arne de Wall
+ * 
+ */
+public interface DataSource {
+
+	public List<SpatialEntity> getMeasurements(Filter filter);
+	
+	public boolean isAvailable();
+	
+
 }

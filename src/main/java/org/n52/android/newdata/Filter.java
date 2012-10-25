@@ -15,8 +15,21 @@
  */
 package org.n52.android.newdata;
 
-import android.location.Location;
+import java.io.Serializable;
 
-public interface LocationUpdateListener {
-    void devicePositionUpdate(Location l, boolean changeViewToAR);
+import org.n52.android.utils.GeoLocationRect;
+
+public abstract class Filter implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	private GeoLocationRect boundingBox;
+	
+	public void setBoundingBox(GeoLocationRect boundingBox) {
+		this.boundingBox = boundingBox;
+	}
+	
+	public GeoLocationRect getBoundingBox() {
+		return boundingBox;
+	}
+	
 }

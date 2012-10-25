@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.android.data;
+package org.n52.android.newdata;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.n52.android.data.MeasurementManager;
 
 public interface Annotations {
 
@@ -52,9 +54,8 @@ public interface Annotations {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.TYPE)
 	public @interface SupportedVisualization {
-
 	
-		Class<? extends Visualization> value();
+		Class<? extends Visualization>[] visualizationClasses();
 	}
 
 }
