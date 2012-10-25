@@ -17,7 +17,6 @@ package org.n52.android.view.geoar.gl.model.shader;
 
 import org.n52.android.view.geoar.GLESUtils;
 
-import android.annotation.SuppressLint;
 import android.opengl.GLES20;
 import android.util.Log;
 
@@ -87,7 +86,6 @@ public abstract class Renderer {
 		GLES20.glDeleteProgram(programHandle);
 	}
 	
-	@SuppressLint("NewApi")
 	public void setVertices(final int vertexBufferHandle){
 		if(vertexBufferHandle >= 0){
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, vertexBufferHandle);
@@ -98,7 +96,6 @@ public abstract class Renderer {
 		}
 	}
 	
-	@SuppressLint("NewApi")
 	public void setNormals(final int normalBufferHandle){
 		if(normalBufferHandle >= 0){
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, normalBufferHandle);
@@ -109,7 +106,6 @@ public abstract class Renderer {
 		}
 	}
 	
-	@SuppressLint("NewApi")
 	public void setColors(final int colorBufferHandle){
 		if(colorBufferHandle >= 0){
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, colorBufferHandle);

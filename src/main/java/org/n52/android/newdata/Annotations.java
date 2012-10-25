@@ -36,6 +36,13 @@ public interface Annotations {
 		String name();
 
 		/**
+		 * Describes a datasource
+		 * 
+		 * @return
+		 */
+		String description() default "";
+
+		/**
 		 * Gets the {@link MercatorProj} zoom to use for the spatial index of
 		 * the {@link MeasurementManager}
 		 * 
@@ -50,11 +57,11 @@ public interface Annotations {
 		 */
 		long minReloadInterval() default -1;
 	}
-	
+
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.TYPE)
 	public @interface SupportedVisualization {
-	
+
 		Class<? extends Visualization>[] visualizationClasses();
 	}
 

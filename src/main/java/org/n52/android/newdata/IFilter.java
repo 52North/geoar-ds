@@ -15,21 +15,6 @@
  */
 package org.n52.android.newdata;
 
-import java.io.Serializable;
+public interface IFilter {
 
-import org.n52.android.utils.GeoLocationRect;
-
-public abstract class Filter implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	private GeoLocationRect boundingBox;
-	
-	public void setBoundingBox(GeoLocationRect boundingBox) {
-		this.boundingBox = boundingBox;
-	}
-	
-	public GeoLocationRect getBoundingBox() {
-		return boundingBox;
-	}
-	
 }

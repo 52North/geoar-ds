@@ -26,7 +26,7 @@ import java.util.List;
  */
 public interface DataSource {
 
-	public List<SpatialEntity> getMeasurements(Filter filter);
+	public List<SpatialEntity> getMeasurements(IFilter filter);
 	
 	public boolean isAvailable();
 	

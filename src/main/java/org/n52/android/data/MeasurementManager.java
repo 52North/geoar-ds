@@ -270,11 +270,13 @@ public class MeasurementManager {
 
 				if (tileMeasurementsList.set(checkIndex,
 						measurements.measurements) == null) {
+					// Previously no elements for that tile
 					progress++;
 					callback.onProgressUpdate(progress,
 							tileMeasurementsList.size(), STEP_REQUEST);
 				}
 				if (!tileMeasurementsList.contains(null)) {
+					// All tiles loaded
 					final List<Measurement> measurementsList = new ArrayList<Measurement>();
 					for (List<Measurement> tileMeasurements : tileMeasurementsList) {
 						measurementsList.addAll(tileMeasurements);
