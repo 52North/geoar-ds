@@ -15,9 +15,40 @@
  */
 package org.n52.android.newdata;
 
+import android.graphics.drawable.Drawable;
+
 public interface Visualization {
-	
-//	EineArtGLGeometry processEntity(SpatialEntity entity, );
-	
-	
+	interface FeatureVisualization {
+		String getTitle(SpatialEntity entity);
+
+		String getDescription(SpatialEntity entity);
+	}
+
+	public interface MapVisualization extends Visualization {
+
+		public interface ItemVisualization extends MapVisualization,
+				FeatureVisualization {
+			Drawable getDrawableForEntity(SpatialEntity entity);
+			// TODO change to geographic feature stuff
+
+		}
+
+		public interface RasterVisualization extends MapVisualization {
+			// TODO
+		}
+	}
+
+	public interface ARVisualization extends Visualization {
+		public interface ItemVisualization extends ARVisualization,
+				FeatureVisualization {
+			// EineArtGLGeometry processEntity(SpatialEntity entity, );
+			// TODO
+		}
+
+		public interface RasterVisualization extends ARVisualization {
+			// TODO
+		}
+
+	}
+
 }
