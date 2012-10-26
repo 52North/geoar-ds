@@ -13,119 +13,124 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.android.view.geoar.gl.model.primitives;
+package org.n52.android.newdata.gl.primitives;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.n52.android.view.geoar.gl.model.RenderNode;
+import org.n52.android.newdata.gl.RenderDetails;
 
+public class Sphere extends RenderDetails {
 
-public class Sphere extends RenderNode{
-    
-    	private class SphereKey{
-    	    public float radius;
-    	    public int segmentsW;
-    	    public int segmentsH;
-    	    public int verticesCount;
-    	    
-    	    public SphereKey(float radius, int segmentsW, int segmentsH){
-    		this.radius = radius;
-    		this.segmentsW = segmentsW;
-    		this.segmentsH = segmentsH;
-    		this.verticesCount = (segmentsW + 1) * (segmentsH + 1);
-    	    }
+	private class SphereKey {
+		public float radius;
+		public int segmentsW;
+		public int segmentsH;
+		public int verticesCount;
 
-	    /* (non-Javadoc)
-	     * @see java.lang.Object#hashCode()
-	     */
-	    @Override
-	    public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result;
-		result = prime * result + Float.floatToIntBits(radius);
-		result = prime * result + segmentsH;
-		result = prime * result + segmentsW;
-		return result;
-	    }
+		public SphereKey(float radius, int segmentsW, int segmentsH) {
+			this.radius = radius;
+			this.segmentsW = segmentsW;
+			this.segmentsH = segmentsH;
+			this.verticesCount = (segmentsW + 1) * (segmentsH + 1);
+		}
 
-	    /* (non-Javadoc)
-	     * @see java.lang.Object#equals(java.lang.Object)
-	     */
-	    @Override
-	    public boolean equals(Object obj) {
-		if (this == obj)
-		    return true;
-		if (obj == null)
-		    return false;
-		if (!(obj instanceof SphereKey))
-		    return false;
-		SphereKey other = (SphereKey) obj;
-		if (Float.floatToIntBits(radius) != Float.floatToIntBits(other.radius))
-		    return false;
-		if (segmentsH != other.segmentsH)
-		    return false;
-		if (segmentsW != other.segmentsW)
-		    return false;
-		return true;
-	    }
-    	}
-    
-	private class SphereGeometry{
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result;
+			result = prime * result + Float.floatToIntBits(radius);
+			result = prime * result + segmentsH;
+			result = prime * result + segmentsW;
+			return result;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (!(obj instanceof SphereKey))
+				return false;
+			SphereKey other = (SphereKey) obj;
+			if (Float.floatToIntBits(radius) != Float
+					.floatToIntBits(other.radius))
+				return false;
+			if (segmentsH != other.segmentsH)
+				return false;
+			if (segmentsW != other.segmentsW)
+				return false;
+			return true;
+		}
+	}
+
+	private class SphereGeometry {
 		private float radius;
-		private int segmentsW; 
+		private int segmentsW;
 		private int segmentsH;
-		
+
 		public float[] vertices;
 		public float[] normals;
 		public int[] indices;
-		
-		public SphereGeometry(SphereKey sphereKey){
-		    	this.radius = sphereKey.radius; 
-		    	this.segmentsH = sphereKey.segmentsH; 
-		    	this.segmentsW = sphereKey.segmentsW;
-		    	
-			int verticesCount 	= (segmentsW + 1) * (segmentsH + 1);
-			int indicesCount 	= 2 * segmentsW * (segmentsH - 1) * 3;
-			
+
+		public SphereGeometry(SphereKey sphereKey) {
+			this.radius = sphereKey.radius;
+			this.segmentsH = sphereKey.segmentsH;
+			this.segmentsW = sphereKey.segmentsW;
+
+			int verticesCount = (segmentsW + 1) * (segmentsH + 1);
+			int indicesCount = 2 * segmentsW * (segmentsH - 1) * 3;
+
 			vertices = new float[verticesCount * 3];
 			normals = new float[verticesCount * 3];
 
 			indices = new int[indicesCount];
-			
+
 			int vertIndex = 0, index = 0;
-			
-			for(int j=0; j <= segmentsH; ++j){
+
+			for (int j = 0; j <= segmentsH; ++j) {
 				float horAngle = (float) (Math.PI * j / segmentsH);
-				float z = radius * (float)Math.cos(horAngle);
-				float ringRadius = radius * (float)Math.sin(horAngle);
-				
-				for(int i=0; i < segmentsW; ++i){
+				float z = radius * (float) Math.cos(horAngle);
+				float ringRadius = radius * (float) Math.sin(horAngle);
+
+				for (int i = 0; i < segmentsW; ++i) {
 					float verAngle = (float) (2.0f * Math.PI * i / segmentsW);
 					float x = ringRadius * (float) Math.cos(verAngle);
 					float y = ringRadius * (float) Math.sin(verAngle);
-					float normalLength = 1.0f / (float) Math.sqrt(x*x+y*y+z*z);
-					
+					float normalLength = 1.0f / (float) Math.sqrt(x * x + y * y
+							+ z * z);
+
 					normals[vertIndex] = x * normalLength;
 					vertices[vertIndex++] = x;
 					normals[vertIndex] = -z * normalLength;
 					vertices[vertIndex++] = -z;
 					normals[vertIndex] = y * normalLength;
 					vertices[vertIndex++] = y;
-					
-					if(i > 0 && j > 0){
+
+					if (i > 0 && j > 0) {
 						int a = (segmentsW + 1) * j + i;
 						int b = (segmentsW + 1) * j + i - 1;
 						int c = (segmentsW + 1) * (j - 1) + i - 1;
 						int d = (segmentsW + 1) * (j - 1) + i;
-						
-						if(j == segmentsH){
+
+						if (j == segmentsH) {
 							indices[index++] = a;
 							indices[index++] = c;
 							indices[index++] = d;
-						} else if(j == 1){
+						} else if (j == 1) {
 							indices[index++] = a;
 							indices[index++] = b;
 							indices[index++] = c;
@@ -141,8 +146,10 @@ public class Sphere extends RenderNode{
 				}
 			}
 		}
-		
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see java.lang.Object#hashCode()
 		 */
 		@Override
@@ -155,7 +162,10 @@ public class Sphere extends RenderNode{
 			result = prime * result + segmentsW;
 			return result;
 		}
-		/* (non-Javadoc)
+
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see java.lang.Object#equals(java.lang.Object)
 		 */
 		@Override
@@ -177,36 +187,35 @@ public class Sphere extends RenderNode{
 			return true;
 		}
 	}
-	
-	private static Map<SphereKey, SphereGeometry> spheres = 
-		Collections.synchronizedMap(new WeakHashMap<SphereKey, SphereGeometry>());
-	
+
+	private static Map<SphereKey, SphereGeometry> spheres = Collections
+			.synchronizedMap(new WeakHashMap<SphereKey, SphereGeometry>());
+
 	private SphereKey sphereKey;
-	
-	public Sphere(float radius, int segmentsW, int segmentsH){
+
+	public Sphere(float radius, int segmentsW, int segmentsH) {
 		super();
 		this.sphereKey = new SphereKey(radius, segmentsW, segmentsH);
 		SphereGeometry geometry = spheres.get(sphereKey);
-		if(geometry == null)
-		    geometry = new SphereGeometry(sphereKey);
-		    spheres.put(sphereKey, geometry);
-		
+		if (geometry == null)
+			geometry = new SphereGeometry(sphereKey);
+		spheres.put(sphereKey, geometry);
 
 		float[] colors = new float[sphereKey.verticesCount * 4];
-		for(int colorCount = sphereKey.verticesCount * 4, i = 0; i < colorCount; i += 4){
+		for (int colorCount = sphereKey.verticesCount * 4, i = 0; i < colorCount; i += 4) {
 			colors[i] = 1.0f;
 			colors[i + 1] = 0;
 			colors[i + 2] = 0;
 			colors[i + 3] = 1.0f;
 		}
-		
-		setRenderObjectives(geometry.vertices, colors, geometry.normals, geometry.indices);
+
+		setRenderDetails(geometry.vertices, colors, geometry.normals,
+				geometry.indices);
 	}
 
-
 	@Override
-	protected void onPreRender() {
+	public void onPreRender() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

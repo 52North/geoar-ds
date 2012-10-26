@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.android.view.geoar.gl.model.primitives;
+package org.n52.android.newdata.gl.primitives;
 
-import org.n52.android.view.geoar.gl.model.RenderNode;
+import org.n52.android.newdata.gl.RenderDetails;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
 
-public class Grid extends RenderNode {
+public class Grid extends RenderDetails {
 	
 	private int gridSize;
 	private int lineColor;
@@ -95,11 +95,11 @@ public class Grid extends RenderNode {
 			normals[i*3+2] = 1;
 		}
 		
-		setRenderObjectives(vertices, colors, normals, indices);
+		setRenderDetails(vertices, colors, normals, indices);
 	}
 
 	@Override
-	protected void onPreRender() {
+	public void onPreRender() {
 	    GLES20.glLineWidth(thickness);
 	}
 }

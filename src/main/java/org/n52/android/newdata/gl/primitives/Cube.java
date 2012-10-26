@@ -13,43 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.android.view.geoar.gl.model.primitives;
+package org.n52.android.newdata.gl.primitives;
 
 import java.util.Collections;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.n52.android.view.geoar.gl.model.Geometry;
-import org.n52.android.view.geoar.gl.model.RenderNode;
+import org.n52.android.newdata.gl.RenderDetails;
 
 import android.graphics.Color;
 import android.opengl.GLES20;
 
-public class Cube extends RenderNode{
-	
-	private class CubeGeometry {
-		private final float size;
-		private final float[] vertices;
-		private Geometry geometry;
+public class Cube extends RenderDetails{
 		
-		CubeGeometry(float size){
-			this.size = size;
-			final float divSize = size * 0.5f;
-			vertices = new float[]{
-                            divSize, divSize, divSize, -divSize, divSize, divSize, -divSize,-divSize, divSize, divSize,-divSize, divSize, 	//0-1-halfSize-3 front
-                            divSize, divSize, divSize, divSize,-divSize, divSize,  divSize,-divSize,-divSize, divSize, divSize,-divSize,	//0-3-4-5 right
-                            divSize,-divSize,-divSize, -divSize,-divSize,-divSize, -divSize, divSize,-divSize, divSize, divSize,-divSize,	//4-7-6-5 back
-                            -divSize, divSize, divSize, -divSize, divSize,-divSize, -divSize,-divSize,-divSize, -divSize,-divSize, divSize,	//1-6-7-halfSize left
-                            divSize, divSize, divSize, divSize, divSize,-divSize, -divSize, divSize,-divSize, -divSize, divSize, divSize, 	//top
-                            divSize,-divSize, divSize, -divSize,-divSize, divSize, -divSize,-divSize,-divSize, divSize,-divSize,-divSize,	//bottom
-			};
-		}
-	}
+	private static final float[] VERTICES ={
+        0.5f, 0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f,-0.5f, 0.5f, 0.5f,-0.5f, 0.5f, 	//0-1-halfSize-3 front
+        0.5f, 0.5f, 0.5f, 0.5f,-0.5f, 0.5f,  0.5f,-0.5f,-0.5f, 0.5f, 0.5f,-0.5f,	//0-3-4-5 right
+        0.5f,-0.5f,-0.5f, -0.5f,-0.5f,-0.5f, -0.5f, 0.5f,-0.5f, 0.5f, 0.5f,-0.5f,	//4-7-6-5 back
+        -0.5f, 0.5f, 0.5f, -0.5f, 0.5f,-0.5f, -0.5f,-0.5f,-0.5f, -0.5f,-0.5f, 0.5f,	//1-6-7-halfSize left
+        0.5f, 0.5f, 0.5f, 0.5f, 0.5f,-0.5f, -0.5f, 0.5f,-0.5f, -0.5f, 0.5f, 0.5f, 	//top
+        0.5f,-0.5f, 0.5f, -0.5f,-0.5f, 0.5f, -0.5f,-0.5f,-0.5f, 0.5f,-0.5f,-0.5f,	//bottom
+};
 	
-	private static Map<Float, CubeGeometry> cubeVertices = Collections.synchronizedMap(
-			new WeakHashMap<Float, CubeGeometry>());
-	
-	private static final float[] colors = {
+	private static final float[] COLORS = {
             1, 1, 1, 1, 	1, 1, 1, 1,	1, 1, 1, 1,	1, 1, 1, 1,
             1, 1, 1, 1,		1, 1, 1, 1,	1, 1, 1, 1, 	1, 1, 1, 1,
             1, 1, 1, 1, 	1, 1, 1, 1,	1, 1, 1, 1,	1, 1, 1, 1,
@@ -58,7 +44,7 @@ public class Cube extends RenderNode{
             1, 1, 1, 1,		1, 1, 1, 1,	1, 1, 1, 1, 	1, 1, 1, 1
 	};
 	
-	private static final float[] normals = {
+	private static final float[] NORMALS = {
             0, 0, 1,   0, 0, 1,   0, 0, 1,   0, 0, 1,     //front
             1, 0, 0,   1, 0, 0,   1, 0, 0,   1, 0, 0,     // right
             0, 0,-1,   0, 0,-1,   0, 0,-1,   0, 0,-1,     //back
@@ -67,7 +53,7 @@ public class Cube extends RenderNode{
             0,-1, 0,   0,-1, 0,   0,-1, 0,   0,-1, 0,     // bottom
 	};
 	
-	private static final int[] indices = {
+	private static final int[] INDICES = {
             0,1,2, 	0,2,3,
             2,1,0, 	2,3,0,
             4,5,6, 	4,6,7,
@@ -78,12 +64,13 @@ public class Cube extends RenderNode{
 	};
 
 	public Cube(float size){
-		super();
-		init(size, Cube.colors);
-
+		this.scaleFactor = size;
+		setRenderDetails(VERTICES, COLORS, NORMALS, INDICES);
+		drawingMode = GLES20.GL_TRIANGLES;
 	}
 	
 	public Cube(float size, int color, Float alpha){
+		/** color details */
 		float r = Color.red(color);
 		float g = Color.green(color);
 		float b = Color.blue(color);
@@ -96,22 +83,21 @@ public class Cube extends RenderNode{
         		r, g, b, a, 	r, g, b, a,	r, g, b, a,	r, g, b, a,
         		r, g, b, a, 	r, g, b, a,	r, g, b, a,	r, g, b, a,			
 		};
-		init(size, colors);
+		/** set data  */
+		this.scaleFactor = size;
+		this.drawingMode = GLES20.GL_TRIANGLES;
+		setRenderDetails(VERTICES, colors, NORMALS, INDICES);
 	}
 
 	private void init(float size, float[] colors){
-		CubeGeometry cv = cubeVertices.containsKey(size) ? cubeVertices.get(size) : new CubeGeometry(size);
-		setRenderObjectives(cv.vertices, colors, normals, indices);
-		if(cv.geometry == null){
-			cv.geometry = geometry;
-			cubeVertices.put(size, cv);
-		}
+		this.vertices = VERTICES;
+		this.colors = colors;
+		this.indices = INDICES;
 		drawingMode = GLES20.GL_TRIANGLES;
 	}
 	
 	@Override
-	protected void onPreRender() {
+	public void onPreRender() {
 		GLES20.glDisable(GLES20.GL_CULL_FACE);
-		
 	}
 }
