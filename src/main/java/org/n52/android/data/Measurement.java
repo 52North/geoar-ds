@@ -59,7 +59,7 @@ public abstract class Measurement implements Cloneable {
 	}
 
 	/**
-	 * Get acciracy in pixel coordinates at the specified {@link MercatorProj} zoom
+	 * Get accuracy in pixel coordinates at the specified {@link MercatorProj} zoom
 	 * level
 	 * 
 	 * @param zoom

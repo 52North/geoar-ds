@@ -13,21 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.n52.android.newdata;
 
-import java.util.List;
+import org.n52.android.data.Tile;
+import org.n52.android.utils.GeoLocationRect;
 
-/**
- * Interface describing a data source
- * 
- * @author Arne de Wall
- * 
- */
-public interface DataSource<F extends Filter> {
+public abstract class AbstractFilter extends Filter {
+	
+	private static final long serialVersionUID = 1L;
 
-	public List<SpatialEntity> getMeasurements(F filter);
+	private GeoLocationRect boundingBox;
+	private Tile tile;
 
-	public boolean isAvailable();
+	@Override
+	public void setBoundingBox(GeoLocationRect boundingBox) {
+		this.boundingBox = boundingBox;
+	}
+
+	@Override
+	public GeoLocationRect getBoundingBox() {
+		return boundingBox;
+	}
+
+	public AbstractFilter setTile(Tile tile) {
+		this.tile = tile;
+		return this;
+	}
+	
+	public AbstractFilter clone() {
+		try {
+			return (AbstractFilter) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+	
 
 }

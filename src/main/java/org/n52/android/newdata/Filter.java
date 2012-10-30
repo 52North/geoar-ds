@@ -17,35 +17,12 @@ package org.n52.android.newdata;
 
 import java.io.Serializable;
 
-import org.n52.android.data.Tile;
 import org.n52.android.utils.GeoLocationRect;
 
 public abstract class Filter implements Serializable, Cloneable {
-	private static final long serialVersionUID = 1L;
 
-	private GeoLocationRect boundingBox;
-	private Tile tile;
+	public abstract void setBoundingBox(GeoLocationRect boundingBox);
 
-	public void setBoundingBox(GeoLocationRect boundingBox) {
-		this.boundingBox = boundingBox;
-	}
-
-	public GeoLocationRect getBoundingBox() {
-		return boundingBox;
-	}
-
-	public Filter setTile(Tile tile) {
-		this.tile = tile;
-		return this;
-	}
-	
-	public Filter clone() {
-		try {
-			return (Filter) super.clone();
-		} catch (CloneNotSupportedException e) {
-			return null;
-		}
-	}
-	
+	public abstract GeoLocationRect getBoundingBox();
 
 }
