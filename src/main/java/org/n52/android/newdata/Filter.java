@@ -20,9 +20,25 @@ import java.io.Serializable;
 import org.n52.android.utils.GeoLocationRect;
 
 public abstract class Filter implements Serializable, Cloneable {
+	
+	private static final long serialVersionUID = 1L;
+	private GeoLocationRect boundingBox;
 
-	public abstract void setBoundingBox(GeoLocationRect boundingBox);
+	public void setBoundingBox(GeoLocationRect boundingBox) {
+		this.boundingBox = boundingBox;
+	}
 
-	public abstract GeoLocationRect getBoundingBox();
+	public GeoLocationRect getBoundingBox() {
+		return boundingBox;
+	}
+	
+	public Filter clone() {
+		try {
+			return (Filter) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+	
 
 }
