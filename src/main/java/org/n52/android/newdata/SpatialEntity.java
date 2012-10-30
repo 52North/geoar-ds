@@ -224,5 +224,21 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	public void setmAltitude(int mAltitude) {
 		this.mAltitude = mAltitude;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public float getLocationAccuracy() {
+		return locationAccuracy;
+	}
+	
+	/**
+	 * 
+	 * @param locationAccuracy
+	 */
+	public void setLocationAccuracy(float locationAccuracy) {
+		this.locationAccuracy = locationAccuracy;
+	}
 
 }

@@ -8,7 +8,7 @@ import android.os.Parcel;
  * @author Arne de Wall
  *
  */
-public final class SpatialObservation<E extends Number> extends SpatialEntity {
+public class SpatialObservation<E extends Number> extends SpatialEntity {
 
 	/**
 	 * Constants
