@@ -20,7 +20,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.n52.android.data.MeasurementManager;
+import org.n52.android.alg.proj.MercatorProj;
 
 public interface Annotations {
 
@@ -63,6 +63,12 @@ public interface Annotations {
 	public @interface SupportedVisualization {
 
 		Class<? extends Visualization>[] visualizationClasses();
+	}
+	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface Filterable {
+		String value();
 	}
 
 }

@@ -24,8 +24,9 @@ public abstract class Filter implements Serializable, Cloneable {
 	private static final long serialVersionUID = 1L;
 	private GeoLocationRect boundingBox;
 
-	public void setBoundingBox(GeoLocationRect boundingBox) {
+	public Filter setBoundingBox(GeoLocationRect boundingBox) {
 		this.boundingBox = boundingBox;
+		return this;
 	}
 
 	public GeoLocationRect getBoundingBox() {

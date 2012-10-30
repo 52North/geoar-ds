@@ -17,6 +17,7 @@
 package org.n52.android.data;
 
 import org.n52.android.alg.proj.MercatorProj;
+import org.n52.android.utils.GeoLocationRect;
 
 import android.graphics.RectF;
 
@@ -55,6 +56,14 @@ public class Tile {
 		bb.left = (float) MercatorProj.transformTileXToLon(x, zoom);
 		bb.right = (float) MercatorProj.transformTileXToLon(x + 1, zoom);
 		return bb;
+	}
+
+	public GeoLocationRect getGeoLocationRect() {
+		float top = (float) MercatorProj.transformTileYToLat(y, zoom);
+		float bottom = (float) MercatorProj.transformTileYToLat(y + 1, zoom);
+		float left = (float) MercatorProj.transformTileXToLon(x, zoom);
+		float right = (float) MercatorProj.transformTileXToLon(x + 1, zoom);
+		return new GeoLocationRect(left, top, right, bottom);
 	}
 
 	@Override
