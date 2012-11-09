@@ -15,20 +15,13 @@
  */
 package org.n52.android.newdata;
 
-import org.n52.android.newdata.gl.primitives.Renderable;
+import org.n52.android.newdata.gl.primitives.DataSourceRenderable;
 
 import android.graphics.drawable.Drawable;
-import android.opengl.GLES20;
 
 public interface Visualization {
 	
-	public enum VisualizationType{
-		Cube(GLES20.GL_TRIANGLES);
-		
-		VisualizationType(int glDrawable){
-			
-		}
-	}
+
 	
 	interface FeatureVisualization {
 		String getTitle(SpatialEntity entity);
@@ -53,7 +46,7 @@ public interface Visualization {
 	public interface ARVisualization extends Visualization {
 		public interface ItemVisualization extends ARVisualization,
 				FeatureVisualization {
-			Renderable getEntityVisualization(SpatialEntity entity);
+			DataSourceRenderable getEntityVisualization(SpatialEntity entity, RenderingFactory fac);
 
 		}
 

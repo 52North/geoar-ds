@@ -40,11 +40,12 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	protected int mLatitudeE6; // latitude, measured in microdegrees (degrees * 1E6).
 	protected int mLongitudeE6; // longitude, measured in microdegrees (degrees * 1E6).
 	protected int mAltitude;
-
+	
 	protected float locationAccuracy;
 	protected float distanceToDevice;
 
 	protected float[] relPositionVec;
+	
 
 	// ================================
 	// Constructors

@@ -15,21 +15,30 @@
  */
 package org.n52.android.newdata.gl.primitives;
 
+
 /**
  * 
- * @author Peter
+ * @author Arne de Wall
  *
  */
-public interface Renderable {
-
-	public void onPreRender();
+public interface DataSourceRenderable {
 	
-	public interface ItemRenderable extends Renderable{
+	public interface ItemRenderable extends DataSourceRenderable{
 		public int getColor();
 		public float getScaleFactor();
 	}
 
-	public interface AreaRenderable extends Renderable{
+	public interface AreaRenderable extends DataSourceRenderable{
 		public byte[] getBitmapArray();
 	}
+
+	public void setOpenGLPreRenderingSettings();
+	public void setColor(int androidColor);
+	public void setColor(float[] colorArray);
+	public void enableCullface(boolean cullface);
+	public void enableBlending(boolean blending, float alpha);
+	public void enableDepthtest(boolean depthTest);
+	
+	public void setDrawingMode(int drawingMode);
+
 }
