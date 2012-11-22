@@ -57,7 +57,7 @@ public class Settings {
 	// Settings for the mapview
 	// Max zoom to use for interpolation, scales for higher zoom
 	public static final byte MAX_ZOOM_MAPINTERPOLATION = 15;
-	// Min zoom required to perfom interpolation
+	// Min zoom required to perform interpolation
 	public static final byte MIN_ZOOM_MAPINTERPOLATION = 13;
 	// Buffer in px to request in advance around map extent
 	public static final int BUFFER_MAPINTERPOLATION = 100;

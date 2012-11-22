@@ -48,7 +48,19 @@ public interface Annotations {
 		 * 
 		 * @return
 		 */
-		byte preferredZoomLevel() default 10;
+		byte cacheZoomLevel() default 12;
+		
+		/**
+		 * Minimum zoom level required to be used in the map view
+		 * @return
+		 */
+		byte minZoomLevel() default 10;
+		
+		/**
+		 * Maximum zoom level to be used in the map view 
+		 * @return
+		 */
+		byte maxZoomLevel() default Byte.MAX_VALUE;
 
 		/**
 		 * Gets the interval after which data has to get rerequested
@@ -68,6 +80,11 @@ public interface Annotations {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	public @interface Filterable {
+		
+		/**
+		 * Name of the filter parameter
+		 * @return
+		 */
 		String value();
 	}
 	
