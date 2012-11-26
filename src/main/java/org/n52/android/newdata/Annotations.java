@@ -49,15 +49,17 @@ public interface Annotations {
 		 * @return
 		 */
 		byte cacheZoomLevel() default 12;
-		
+
 		/**
 		 * Minimum zoom level required to be used in the map view
+		 * 
 		 * @return
 		 */
 		byte minZoomLevel() default 10;
-		
+
 		/**
-		 * Maximum zoom level to be used in the map view 
+		 * Maximum zoom level to be used in the map view
+		 * 
 		 * @return
 		 */
 		byte maxZoomLevel() default Byte.MAX_VALUE;
@@ -76,21 +78,28 @@ public interface Annotations {
 
 		Class<? extends Visualization>[] visualizationClasses();
 	}
-	
+
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface SystemService {
+		String value();
+	}
+
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface PostConstruct {
+	}
+
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	public @interface Filterable {
-		
+
 		/**
 		 * Name of the filter parameter
+		 * 
 		 * @return
 		 */
 		String value();
 	}
-	
-
-	
-
-	
 
 }
