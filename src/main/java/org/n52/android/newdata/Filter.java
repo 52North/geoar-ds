@@ -41,5 +41,7 @@ public abstract class Filter implements Serializable, Cloneable {
 		}
 	}
 	
+	
+	
 
 }

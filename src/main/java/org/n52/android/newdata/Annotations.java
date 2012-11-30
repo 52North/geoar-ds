@@ -93,13 +93,69 @@ public interface Annotations {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	public @interface Filterable {
+	}
 
-		/**
-		 * Name of the filter parameter
-		 * 
-		 * @return
-		 */
-		String value();
+	public interface Settings {
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface Name {
+			/**
+			 * Name of the parameter
+			 * 
+			 * @return
+			 */
+			String value();
+		}
+
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface Default {
+			/**
+			 * Default value of the parameter
+			 * 
+			 * @return
+			 */
+			String value();
+		}
+
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface Min {
+			/**
+			 * Minimum value of the parameter
+			 * 
+			 * @return
+			 */
+			String value();
+		}
+
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface Max {
+			/**
+			 * Maximum value of the parameter
+			 * 
+			 * @return
+			 */
+			String value();
+		}
+
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface NoValue {
+			/**
+			 * Text to show for null value
+			 * 
+			 * @return
+			 */
+			String value();
+		}
+
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface NotNull {
+		}
+
 	}
 
 }
