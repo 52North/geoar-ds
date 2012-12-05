@@ -86,13 +86,18 @@ public interface Annotations {
 	}
 
 	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface SharedHttpClient {
+	}
+
+	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
 	public @interface PostConstruct {
 	}
 
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
-	public @interface Filterable {
+	public @interface Setting {
 	}
 
 	public interface Settings {
@@ -154,6 +159,23 @@ public interface Annotations {
 		@Retention(RetentionPolicy.RUNTIME)
 		@Target(ElementType.FIELD)
 		public @interface NotNull {
+		}
+
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface Temporal {
+
+			public enum TemporalType {
+				DATE, TIME, DATETIME
+			};
+
+			TemporalType value();
+		}
+
+		@Retention(RetentionPolicy.RUNTIME)
+		@Target(ElementType.FIELD)
+		public @interface Group {
+			String value();
 		}
 
 	}
