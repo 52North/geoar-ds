@@ -67,5 +67,9 @@ public class SpatialObservation<E extends Number> extends SpatialEntity {
 	protected void devicePositionUpdate(Location l) {
 		this.distanceToDevice = distanceTo(l.getLatitude(), l.getLongitude());
 	}
+	
+	public E getValue() {
+		return value;
+	}
 
 }
