@@ -16,11 +16,13 @@
 
 package org.n52.android.alg.proj;
 
+import org.n52.android.newdata.SpatialEntity;
+
 /**
  * Class to hold bounds in {@link MercatorProj} coordinates
  * 
  * @author Holger Hopmann
- *
+ * 
  */
 public class MercatorRect {
 	public int top, left, bottom, right;
@@ -31,6 +33,15 @@ public class MercatorRect {
 		this.top = top;
 		this.bottom = bottom;
 		this.right = right;
+		this.zoom = zoom;
+	}
+
+	public MercatorRect(float left, float top, float right, float bottom,
+			byte zoom) {
+		this.left = (int) left;
+		this.top = (int) top;
+		this.bottom = (int) bottom;
+		this.right = (int) right;
 		this.zoom = zoom;
 	}
 
@@ -63,9 +74,24 @@ public class MercatorRect {
 
 	public MercatorRect transform(byte dstZoom) {
 		return new MercatorRect((int) MercatorProj.transformPixel(left, zoom,
-				dstZoom), (int) MercatorProj.transformPixel(top, zoom, dstZoom),
+				dstZoom),
+				(int) MercatorProj.transformPixel(top, zoom, dstZoom),
 				(int) MercatorProj.transformPixel(right, zoom, dstZoom),
-				(int) MercatorProj.transformPixel(bottom, zoom, dstZoom), dstZoom);
+				(int) MercatorProj.transformPixel(bottom, zoom, dstZoom),
+				dstZoom);
+	}
+
+	public boolean contains(SpatialEntity entity) {
+		float leftLon = (float) MercatorProj.transformPixelXToLon(left, zoom);
+		float rightLon = (float) MercatorProj.transformPixelXToLon(right, zoom);
+		float topLat = (float) MercatorProj.transformPixelYToLat(top, zoom);
+		float bottomLat = (float) MercatorProj.transformPixelYToLat(bottom,
+				zoom);
+
+		return entity.getLatitude() <= topLat
+				&& entity.getLatitude() >= bottomLat
+				&& entity.getLongitude() >= leftLon
+				&& entity.getLongitude() <= rightLon;
 	}
 
 }

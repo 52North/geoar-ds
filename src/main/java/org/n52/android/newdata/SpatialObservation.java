@@ -62,18 +62,6 @@ public class SpatialObservation<E extends Number> extends SpatialEntity {
 		super(latitude, longitude, altitude);
 		this.value = value;
 	}
-	
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel arg0, int arg1) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	protected void devicePositionUpdate(Location l) {

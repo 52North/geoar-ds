@@ -63,11 +63,6 @@ public class SpatialObjectType extends SpatialEntity {
 		// TODO
 	}
 
-	@Override
-	protected void devicePositionUpdate(Location l) {
-		this.distanceToDevice = distanceTo(l.getLatitude(), l.getLongitude());
-	}
-
 	/**
 	 * @return the mapIcon
 	 */
@@ -117,18 +112,6 @@ public class SpatialObjectType extends SpatialEntity {
 	 */
 	public String getUid() {
 		return mUid;
-	}
-
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

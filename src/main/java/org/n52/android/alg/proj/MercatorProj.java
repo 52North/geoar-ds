@@ -16,13 +16,12 @@
 
 package org.n52.android.alg.proj;
 
-
 /**
  * @author Daniel Nüst
  * @author Arne de Wall
  * 
  */
-
+// TODO change to float
 public class MercatorProj {
 
 	private static final int TILE = 256;
@@ -30,18 +29,19 @@ public class MercatorProj {
 	private static final float EARTH_RADIUS = 6378137;
 	private static final float EARTH_CIRCUMFERENCE = 40075016.685578f;
 
-	private static int getMapSize(byte zoom){
+	private static int getMapSize(byte zoom) {
 		return (int) TILE << zoom; // 256 * 2 ^ zoomlevel
 	}
-	
-	public static double getGroundResolution(double lat, byte zoom){
-		return Math.cos(lat * Math.PI / 180) * EARTH_CIRCUMFERENCE / getMapSize(zoom);
+
+	public static double getGroundResolution(double lat, byte zoom) {
+		return Math.cos(lat * Math.PI / 180) * EARTH_CIRCUMFERENCE
+				/ getMapSize(zoom);
 	}
-	
-	public static double transformLonToPixelX(double lon, byte zoom){
-		return ((lon + 180)/360) * getMapSize(zoom) + 0.5;
+
+	public static double transformLonToPixelX(double lon, byte zoom) {
+		return ((lon + 180) / 360) * getMapSize(zoom) + 0.5;
 	}
-	
+
 	public static double transformTileXToLon(long tileX, byte zoom) {
 		return transformPixelXToLon(tileX * TILE, zoom);
 	}
@@ -49,22 +49,22 @@ public class MercatorProj {
 	public static double transformTileYToLat(long tileY, byte zoom) {
 		return transformPixelYToLat(tileY * TILE, zoom);
 	}
-	
-	public static double transformLatToPixelY(double lat, byte zoom){
+
+	public static double transformLatToPixelY(double lat, byte zoom) {
 		double sinLat = Math.sin(lat * (Math.PI / 180));
 		return ((0.5 - Math.log((1 + sinLat) / (1 - sinLat)) / (4 * Math.PI)) * getMapSize(zoom));
 	}
-	
-	public static double transformPixelXToLon(float x, byte zoom){
+
+	public static double transformPixelXToLon(float x, byte zoom) {
 		double size = getMapSize(zoom);
-		return ((Math.min(Math.max(x, 0), size-1) / size) - 0.5) * 360;
+		return ((Math.min(Math.max(x, 0), size - 1) / size) - 0.5) * 360;
 	}
-	
-	public static double transformPixelYToLat(float y, byte zoom){
+
+	public static double transformPixelYToLat(float y, byte zoom) {
 		double size = getMapSize(zoom);
-		return (90-360*Math.atan(Math.exp(
-				-(0.5-(Math.min(Math.max(y, 0), size-1)/size))
-				*2*Math.PI)) / Math.PI);
+		return (90 - 360
+				* Math.atan(Math.exp(-(0.5 - (Math.min(Math.max(y, 0), size - 1) / size))
+						* 2 * Math.PI)) / Math.PI);
 	}
 
 	public static int transformPixelXToTileX(double pixelX, byte zoom) {
@@ -77,5 +77,13 @@ public class MercatorProj {
 
 	public static long transformPixel(int pixel, byte inZoom, byte outZoom) {
 		return (long) (pixel * Math.pow(2, outZoom - inZoom));
+	}
+
+	public static float transformTileXToPixelX(int tileX) {
+		return tileX * TILE;
+	}
+
+	public static float transformTileYToPixelY(int tileY) {
+		return tileY * TILE;
 	}
 }

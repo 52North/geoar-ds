@@ -18,15 +18,18 @@ package org.n52.android.newdata;
 import org.n52.android.newdata.gl.primitives.DataSourceRenderable;
 
 import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewGroup;
 
 public interface Visualization {
-	
 
-	
 	interface FeatureVisualization {
 		String getTitle(SpatialEntity entity);
 
 		String getDescription(SpatialEntity entity);
+
+		View getFeatureView(SpatialEntity entity, View convertView,
+				ViewGroup parentView);
 	}
 
 	public interface MapVisualization extends Visualization {
@@ -46,7 +49,8 @@ public interface Visualization {
 	public interface ARVisualization extends Visualization {
 		public interface ItemVisualization extends ARVisualization,
 				FeatureVisualization {
-			DataSourceRenderable getEntityVisualization(SpatialEntity entity, RenderingFactory fac);
+			DataSourceRenderable getEntityVisualization(SpatialEntity entity,
+					RenderingFactory fac);
 
 		}
 

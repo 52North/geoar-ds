@@ -28,7 +28,7 @@ import android.os.Parcelable;
  * 
  */
 public abstract class SpatialEntity implements LocationUpdateListener,
-		Parcelable, Serializable, Cloneable {
+		Serializable, Cloneable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,15 +37,16 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	// ================================
 	protected boolean isVisible;
 
-	protected int mLatitudeE6; // latitude, measured in microdegrees (degrees * 1E6).
-	protected int mLongitudeE6; // longitude, measured in microdegrees (degrees * 1E6).
+	protected int mLatitudeE6; // latitude, measured in microdegrees (degrees *
+								// 1E6).
+	protected int mLongitudeE6; // longitude, measured in microdegrees (degrees
+								// * 1E6).
 	protected int mAltitude;
-	
+
 	protected float locationAccuracy;
 	protected float distanceToDevice;
 
 	protected float[] relPositionVec;
-	
 
 	// ================================
 	// Constructors
@@ -161,7 +162,9 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 		}
 	}
 
-	protected abstract void devicePositionUpdate(Location l);
+	protected void devicePositionUpdate(Location l) {
+		this.distanceToDevice = distanceTo(l.getLatitude(), l.getLongitude());
+	}
 
 	// ================================
 	// Getter / Setter
@@ -170,7 +173,7 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	/**
 	 * @return the mLatitudeE6
 	 */
-	public int getmLatitudeE6() {
+	public int getLatitudeE6() {
 		return mLatitudeE6;
 	}
 
@@ -185,21 +188,21 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	 * @param mLatitudeE6
 	 *            the mLatitudeE6 to set
 	 */
-	public void setmLatitudeE6(int mLatitudeE6) {
+	public void setLatitudeE6(int mLatitudeE6) {
 		this.mLatitudeE6 = mLatitudeE6;
 	}
 
 	/**
 	 * @return the mLongitudeE6
 	 */
-	public int getmLongitudeE6() {
+	public int getLongitudeE6() {
 		return mLongitudeE6;
 	}
 
 	/**
 	 * @return Longitude not in microdegrees
 	 */
-	public double getmLongitude() {
+	public double getLongitude() {
 		return mLongitudeE6 / 1E6;
 	}
 
@@ -207,14 +210,14 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	 * @param mLongitudeE6
 	 *            the mLongitudeE6 to set
 	 */
-	public void setmLongitudeE6(int mLongitudeE6) {
+	public void setLongitudeE6(int mLongitudeE6) {
 		this.mLongitudeE6 = mLongitudeE6;
 	}
 
 	/**
 	 * @return the mAltitude
 	 */
-	public int getmAltitude() {
+	public int getAltitude() {
 		return mAltitude;
 	}
 
@@ -222,10 +225,10 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	 * @param mAltitude
 	 *            the mAltitude to set
 	 */
-	public void setmAltitude(int mAltitude) {
+	public void setAltitude(int mAltitude) {
 		this.mAltitude = mAltitude;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -233,7 +236,7 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	public float getLocationAccuracy() {
 		return locationAccuracy;
 	}
-	
+
 	/**
 	 * 
 	 * @param locationAccuracy
