@@ -43,10 +43,10 @@ public abstract class GLESUtils {
 			// bind fragment shader to the program
 			GLES20.glAttachShader(programHandle, fragmentShaderHandle);
 			
-//			GLES20.glBindAttribLocation(programHandle, 0, "a_Position");
-//			GLES20.glBindAttribLocation(programHandle, 1, "a_Color");
-//			GLES20.glBindAttribLocation(programHandle, 0, "a_Normal");
-
+			GLES20.glBindAttribLocation(programHandle, 0, "a_Position");
+			GLES20.glBindAttribLocation(programHandle, 1, "a_Color");
+			GLES20.glBindAttribLocation(programHandle, 2, "a_Normal");
+//			GLES20.glBindAttribLocation(programHandle, i, attributes[i]);
 			// link shaders into the program
 			GLES20.glLinkProgram(programHandle);
 			// get the link status
