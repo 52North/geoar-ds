@@ -60,6 +60,17 @@ public class GeoLocation implements Serializable, Parcelable {
 		this((int)(latitude * 1E6), (int)(longitude * 1E6), altitude);
 	}
 	
+	public int getAltitude() {
+		return mAltitude;
+	}
+	
+	public int getLatitudeE6() {
+		return mLatitudeE6;
+	}
+	public int getLongitudeE6() {
+		return mLongitudeE6;
+	}
+	
 	/**
 	 * 
 	 * @param in
