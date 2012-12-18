@@ -18,7 +18,6 @@ package org.n52.android.newdata;
 import java.io.Serializable;
 
 import android.location.Location;
-import android.os.Parcelable;
 
 /**
  * Holds the pose information and a geometrical representation to the super
