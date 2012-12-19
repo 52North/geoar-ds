@@ -17,6 +17,7 @@ package org.n52.android.newdata;
 
 import org.n52.android.newdata.gl.primitives.DataSourceRenderable;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public interface Visualization {
 		String getDescription(SpatialEntity entity);
 
 		View getFeatureView(SpatialEntity entity, View convertView,
-				ViewGroup parentView);
+				ViewGroup parentView, Context activityContext);
 	}
 
 	public interface MapVisualization extends Visualization {
