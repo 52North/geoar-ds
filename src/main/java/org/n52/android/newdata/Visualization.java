@@ -50,7 +50,7 @@ public interface Visualization {
 	public interface ARVisualization extends Visualization {
 		public interface ItemVisualization extends ARVisualization,
 				FeatureVisualization {
-			DataSourceRenderable getEntityVisualization(SpatialEntity entity,
+			DataSourceRenderable[] getEntityVisualization(SpatialEntity entity,
 					RenderFeatureFactory fac);
 
 		}
