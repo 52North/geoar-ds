@@ -15,7 +15,8 @@
  */
 package org.n52.android.newdata;
 
-import org.n52.android.newdata.gl.primitives.DataSourceRenderable;
+import org.n52.android.newdata.vis.DataSourceVisualization.DataSourceVisualizationCanvas;
+import org.n52.android.newdata.vis.DataSourceVisualization.DataSourceVisualizationGL;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -50,9 +51,11 @@ public interface Visualization {
 	public interface ARVisualization extends Visualization {
 		public interface ItemVisualization extends ARVisualization,
 				FeatureVisualization {
-			DataSourceRenderable[] getEntityVisualization(SpatialEntity entity,
-					RenderFeatureFactory fac);
+			DataSourceVisualizationGL[] getEntityVisualization(
+					SpatialEntity entity, RenderFeatureFactory fac);
 
+			DataSourceVisualizationCanvas getEntityVisualzation(
+					SpatialEntity entity);
 		}
 
 		public interface RasterVisualization extends ARVisualization {
