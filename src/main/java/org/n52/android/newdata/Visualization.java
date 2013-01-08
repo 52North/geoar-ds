@@ -54,7 +54,7 @@ public interface Visualization {
 			DataSourceVisualizationGL[] getEntityVisualization(
 					SpatialEntity entity, RenderFeatureFactory fac);
 
-			DataSourceVisualizationCanvas getEntityVisualzation(
+			DataSourceVisualizationCanvas getEntityVisualization(
 					SpatialEntity entity);
 		}
 
