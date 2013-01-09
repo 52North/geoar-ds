@@ -16,8 +16,6 @@
 package org.n52.android.newdata;
 
 import android.graphics.Bitmap;
-import android.location.Location;
-import android.os.Parcel;
 
 public class SpatialObjectType extends SpatialEntity {
 

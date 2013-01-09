@@ -16,7 +16,6 @@
 package org.n52.android.newdata;
 
 import android.location.Location;
-import android.os.Parcel;
 
 /**
  * 
