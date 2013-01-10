@@ -100,6 +100,15 @@ public interface Annotations {
 	public @interface PostConstruct {
 	}
 
+	/**
+	 * Annotates a method to use to get the name of a data source at runtime.
+	 * This is relevant for multi-instance data sources.
+	 */
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface NameCallback {
+	}
+
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	public @interface Setting {
