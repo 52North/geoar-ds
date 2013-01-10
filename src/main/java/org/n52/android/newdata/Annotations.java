@@ -89,7 +89,7 @@ public interface Annotations {
 	@Target(ElementType.FIELD)
 	public @interface SharedHttpClient {
 	}
-	
+
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	public @interface PluginContext {
