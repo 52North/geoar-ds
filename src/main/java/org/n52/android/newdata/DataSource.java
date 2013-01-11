@@ -41,7 +41,7 @@ public interface DataSource<F extends Filter> {
 	 * @param filter
 	 * @return
 	 */
-	public List<? extends SpatialEntity> getMeasurements(F filter);
+	public List<? extends SpatialEntity> getMeasurements(F filter) throws Exception;
 
 	public boolean isAvailable();
 
