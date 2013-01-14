@@ -114,6 +114,14 @@ public interface Annotations {
 	public @interface Setting {
 	}
 
+	/**
+	 * Indicates a method to be called after settings of an object got changed by GeoAR
+	 */
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface PostSettingsChanged {
+	}
+
 	public interface Settings {
 		@Retention(RetentionPolicy.RUNTIME)
 		@Target(ElementType.FIELD)
