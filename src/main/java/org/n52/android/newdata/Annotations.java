@@ -115,11 +115,31 @@ public interface Annotations {
 	}
 
 	/**
-	 * Indicates a method to be called after settings of an object got changed by GeoAR
+	 * Indicates a method to be called after settings of an object got changed
+	 * by GeoAR
 	 */
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
 	public @interface PostSettingsChanged {
+	}
+
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.TYPE)
+	public @interface DefaultInstances {
+		DefaultSettingsSet[] value();
+	}
+	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.ANNOTATION_TYPE)
+	public @interface DefaultSettingsSet {
+		DefaultSetting[] value();
+	}
+	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.ANNOTATION_TYPE)
+	public @interface DefaultSetting {
+		String value();
+		String name();
 	}
 
 	public interface Settings {
@@ -128,17 +148,6 @@ public interface Annotations {
 		public @interface Name {
 			/**
 			 * Name of the parameter
-			 * 
-			 * @return
-			 */
-			String value();
-		}
-
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface Default {
-			/**
-			 * Default value of the parameter
 			 * 
 			 * @return
 			 */
