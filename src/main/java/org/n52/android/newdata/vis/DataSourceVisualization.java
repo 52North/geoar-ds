@@ -15,6 +15,7 @@
  */
 package org.n52.android.newdata.vis;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 
@@ -42,6 +43,8 @@ public interface DataSourceVisualization {
 		public void enableCullface(boolean cullface);
 		public void enableBlending(boolean blending, float alpha);
 		public void enableDepthtest(boolean depthTest);
+		
+		public void setTexture(Bitmap bitmap);
 		
 		public void setDrawingMode(int drawingMode);
 	}
