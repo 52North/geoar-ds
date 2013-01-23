@@ -179,8 +179,8 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	/**
 	 * @return Latitude not in microdegrees
 	 */
-	public double getLatitude() {
-		return mLatitudeE6 / 1E6;
+	public float getLatitude() {
+		return mLatitudeE6 / 1E6f;
 	}
 
 	/**
@@ -201,8 +201,8 @@ public abstract class SpatialEntity implements LocationUpdateListener,
 	/**
 	 * @return Longitude not in microdegrees
 	 */
-	public double getLongitude() {
-		return mLongitudeE6 / 1E6;
+	public float getLongitude() {
+		return mLongitudeE6 / 1E6f;
 	}
 
 	/**
