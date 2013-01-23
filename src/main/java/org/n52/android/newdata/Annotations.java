@@ -33,7 +33,7 @@ public interface Annotations {
 		 * 
 		 * @return
 		 */
-		String name();
+		Settings.Name name();
 
 		/**
 		 * Describes a datasource
@@ -128,17 +128,18 @@ public interface Annotations {
 	public @interface DefaultInstances {
 		DefaultSettingsSet[] value();
 	}
-	
+
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.ANNOTATION_TYPE)
 	public @interface DefaultSettingsSet {
 		DefaultSetting[] value();
 	}
-	
+
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.ANNOTATION_TYPE)
 	public @interface DefaultSetting {
 		String value();
+
 		String name();
 	}
 
@@ -151,7 +152,9 @@ public interface Annotations {
 			 * 
 			 * @return
 			 */
-			String value();
+			String value() default "";
+
+			int resId() default -1;
 		}
 
 		@Retention(RetentionPolicy.RUNTIME)
