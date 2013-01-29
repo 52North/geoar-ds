@@ -15,6 +15,8 @@
  */
 package org.n52.android.newdata.vis;
 
+import java.util.concurrent.Callable;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
@@ -36,6 +38,10 @@ public interface DataSourceVisualization {
 		public interface AreaRenderable extends DataSourceVisualizationGL{
 			public byte[] getBitmapArray();
 		}
+		
+		public interface TextureCallback {
+			public Bitmap getTexture();
+		}
 
 		public void setOpenGLPreRenderingSettings();
 		public void setColor(int androidColor);
@@ -44,7 +50,7 @@ public interface DataSourceVisualization {
 		public void enableBlending(boolean blending, float alpha);
 		public void enableDepthtest(boolean depthTest);
 		
-		public void setTexture(Bitmap bitmap);
+		public void setTextureCallback(Callable<Bitmap> callback);
 		
 		public void setDrawingMode(int drawingMode);
 	}
