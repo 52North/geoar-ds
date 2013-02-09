@@ -53,6 +53,8 @@ public interface DataSourceVisualization {
 		public void setTextureCallback(Callable<Bitmap> callback);
 		
 		public void setDrawingMode(int drawingMode);
+		
+		public void setSubVisualization(DataSourceVisualizationGL subVisualization);
 	}
 	
 	public interface DataSourceVisualizationCanvas extends DataSourceVisualization{
