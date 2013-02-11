@@ -32,8 +32,9 @@ public interface Visualization {
 
 		View getFeatureView(SpatialEntity entity, View convertView,
 				ViewGroup parentView, Context activityContext);
-		
 
+		View getFeatureDetailView(SpatialEntity entity, View convertView,
+				ViewGroup parentView, Context activityContext);
 	}
 
 	public interface MapVisualization extends Visualization {
@@ -58,9 +59,7 @@ public interface Visualization {
 
 			DataSourceVisualizationCanvas getEntityVisualization(
 					SpatialEntity entity);
-			
-			View getFeatureDetailView(SpatialEntity entity, View convertView,
-					ViewGroup parentView, Context activityContext);
+
 		}
 
 		public interface RasterVisualization extends ARVisualization {
