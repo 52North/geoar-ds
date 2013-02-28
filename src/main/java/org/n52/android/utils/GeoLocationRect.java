@@ -45,8 +45,8 @@ public class GeoLocationRect extends RectF implements Serializable {
 	 **************************/
 	public GeoLocationRect(float left, float top, float right, float bottom) {
 		super(left, top, right, bottom);
-		mGeoLocation = new GeoLocation((int) (centerX() * 1E6),
-				(int) (centerY() * 1E6));
+		mGeoLocation = new GeoLocation((int) (centerY() * 1E6),
+				(int) (centerX() * 1E6));
 	}
 
 	/**
