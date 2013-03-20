@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.n52.android.alg.proj;
+package org.n52.geoar.alg.proj;
 
-import org.n52.android.newdata.SpatialEntity;
+import org.n52.geoar.newdata.SpatialEntity;
 
 /**
  * Class to hold bounds in {@link MercatorProj} coordinates

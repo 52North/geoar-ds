@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.n52.android.newdata;
+package org.n52.geoar.newdata;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public interface DataSource<F extends Filter> {
 	 * 
 	 * If the data source is unable to request its data by bounding boxes, it is
 	 * recommended to either cache and filter the results locally, or to set the
-	 * {@link org.n52.android.newdata.Annotations.DataSource#cacheZoomLevel()}
+	 * {@link org.n52.geoar.newdata.Annotations.DataSource#cacheZoomLevel()}
 	 * to 0 which results in single-tiled calls of this method.
 	 * 
 	 * @param filter

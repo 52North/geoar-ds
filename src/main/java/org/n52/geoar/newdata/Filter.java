@@ -13,20 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.n52.geoar.newdata;
 
-package org.n52.android.data;
+import java.io.Serializable;
 
-/**
- * 
- * @author Holger Hoppman
- *
- */
-public class MeasureParserException extends Exception {
+import org.n52.geoar.utils.GeoLocationRect;
 
+public abstract class Filter implements Serializable, Cloneable {
+	
 	private static final long serialVersionUID = 1L;
+	private GeoLocationRect boundingBox;
 
-	public MeasureParserException(String message) {
-		super(message);
+	public Filter setBoundingBox(GeoLocationRect boundingBox) {
+		this.boundingBox = boundingBox;
+		return this;
 	}
+
+	public GeoLocationRect getBoundingBox() {
+		return boundingBox;
+	}
+	
+	public Filter clone() {
+		try {
+			return (Filter) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
+	
+	
+	
 
 }

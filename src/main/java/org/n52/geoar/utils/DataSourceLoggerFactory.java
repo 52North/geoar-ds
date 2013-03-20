@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.android.utils;
+package org.n52.geoar.utils;
 
 /**
  * Provides access to main application logging framework. This allows to include

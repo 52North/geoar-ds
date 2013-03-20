@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.n52.android.alg.proj;
+package org.n52.geoar.alg.proj;
 
 /**
  * @author Daniel Nüst

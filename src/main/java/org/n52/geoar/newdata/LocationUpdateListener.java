@@ -13,16 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.android.newdata;
+package org.n52.geoar.newdata;
 
-import org.n52.android.newdata.vis.DataSourceVisualization.DataSourceVisualizationGL;
+import android.location.Location;
 
-public interface RenderFeatureFactory {
-
-	public DataSourceVisualizationGL createCube();
-
-	public DataSourceVisualizationGL createSphere();
-	// TODO
-//	public DataSourceRenderable createRenderable(RenderLoader renderLoader);
-
+public interface LocationUpdateListener {
+    void devicePositionUpdate(Location l, boolean changeViewToAR);
 }

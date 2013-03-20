@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.n52.android.newdata;
+package org.n52.geoar.newdata;
 
 import java.util.ArrayList;
 import java.util.List;
