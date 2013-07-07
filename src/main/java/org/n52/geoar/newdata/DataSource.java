@@ -18,6 +18,8 @@ package org.n52.geoar.newdata;
 
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 /**
  * Interface describing a data source
  * 
@@ -41,7 +43,7 @@ public interface DataSource<F extends Filter> {
 	 * @param filter
 	 * @return
 	 */
-	public List<? extends SpatialEntity> getMeasurements(F filter) throws Exception;
+	public List<? extends SpatialEntity2<? extends Geometry>> getMeasurements(F filter) throws Exception;
 
 	public boolean isAvailable();
 

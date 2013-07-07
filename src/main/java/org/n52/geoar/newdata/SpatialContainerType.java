@@ -18,36 +18,44 @@ package org.n52.geoar.newdata;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SpatialContainerType<E extends Number> extends
-		SpatialEntity {
+import com.vividsolutions.jts.geom.Geometry;
 
-	/**
-	 * Constatants
-	 */
-	private static final long serialVersionUID = 1L;
+/**
+ * 
+ * @author Arne de Wall <a.dewall@52North.org>
+ * 
+ * @param <G>
+ * @param <E>
+ */
+public abstract class SpatialContainerType<G extends Geometry, E extends Number>
+        extends SpatialEntity2<G> {
 
-	public SpatialContainerType(double latitude, double longitude) {
-		super(latitude, longitude);
-	}
+    /**
+     * Constatants
+     */
+    private static final long serialVersionUID = 1L;
 
-	private List<SpatialObservation<E>> observations = new ArrayList<SpatialObservation<E>>();
+    public SpatialContainerType(G geometry){
+        super(geometry);
+    }
+    
+    private List<SpatialObservation<G, E>> observations = new ArrayList<SpatialObservation<G, E>>();
 
-	public void addObservation(double latitude, double longitude,
-			double altitude, E value) {
-		if (observations != null) {
-			SpatialObservation<E> observation = new SpatialObservation<E>(
-					altitude, altitude, value);
-			addObservation(observation);
-		}
-	}
+    public void addObservation(G geometry, E value) {
+        if (observations != null) {
+            SpatialObservation<G, E> observation = new SpatialObservation<G, E>(
+                    geometry, value);
+            addObservation(observation);
+        }
+    }
 
-	public void addObservation(SpatialObservation<E> observation) {
-		if (observations == null && observations.contains(observation))
-			return;
-		observations.add(observation);
-	}
+    public void addObservation(SpatialObservation<G, E> observation) {
+        if (observations == null && observations.contains(observation))
+            return;
+        observations.add(observation);
+    }
 
-	public void getFeaturedVisualizations() {
+    public void getFeaturedVisualizations() {
 
-	}
+    }
 }

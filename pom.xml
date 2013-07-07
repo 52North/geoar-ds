@@ -9,7 +9,7 @@
 	<name>GeoAR Data Source Library</name>
 	<description>...</description>
 
-	
+
 	<url>http://52north.org/android</url>
 	<inceptionYear>2012</inceptionYear>
 	<organization>
@@ -23,6 +23,11 @@
 			<artifactId>android</artifactId>
 			<scope>provided</scope>
 			<version>4.1.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.vividsolutions</groupId>
+			<artifactId>jts</artifactId>
+			<version>1.8</version>
 		</dependency>
 	</dependencies>
 	<!-- <scm> -->
@@ -69,23 +74,14 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- <plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-				<artifactId>android-maven-plugin</artifactId>
-				<version>3.3.0</version>
-				<configuration>
-					<androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
-					<assetsDirectory>${project.basedir}/assets</assetsDirectory>
-					<resourceDirectory>${project.basedir}/res</resourceDirectory>
-					<nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
-					<sdk>
-						<platform>15</platform>
-					</sdk>
-					<deleteConflictingFiles>true</deleteConflictingFiles>
-					<undeployBeforeDeploy>true</undeployBeforeDeploy>
-				</configuration>
-				<extensions>true</extensions>
-			</plugin> -->
+			<!-- <plugin> <groupId>com.jayway.maven.plugins.android.generation2</groupId> 
+				<artifactId>android-maven-plugin</artifactId> <version>3.3.0</version> <configuration> 
+				<androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile> 
+				<assetsDirectory>${project.basedir}/assets</assetsDirectory> <resourceDirectory>${project.basedir}/res</resourceDirectory> 
+				<nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory> 
+				<sdk> <platform>15</platform> </sdk> <deleteConflictingFiles>true</deleteConflictingFiles> 
+				<undeployBeforeDeploy>true</undeployBeforeDeploy> </configuration> <extensions>true</extensions> 
+				</plugin> -->
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -23,17 +23,19 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 public interface Visualization {
 
 	interface FeatureVisualization {
-		String getTitle(SpatialEntity entity);
+		String getTitle(SpatialEntity2<? extends Geometry> entity);
 
-		String getDescription(SpatialEntity entity);
+		String getDescription(SpatialEntity2<? extends Geometry> entity);
 
-		View getFeatureView(SpatialEntity entity, View convertView,
+		View getFeatureView(SpatialEntity2<? extends Geometry> entity, View convertView,
 				ViewGroup parentView, Context activityContext);
 
-		View getFeatureDetailView(SpatialEntity entity, View convertView,
+		View getFeatureDetailView(SpatialEntity2<? extends Geometry> entity, View convertView,
 				ViewGroup parentView, Context activityContext);
 	}
 
@@ -41,7 +43,7 @@ public interface Visualization {
 
 		public interface ItemVisualization extends MapVisualization,
 				FeatureVisualization {
-			Drawable getDrawableForEntity(SpatialEntity entity);
+			Drawable getDrawableForEntity(SpatialEntity2<? extends Geometry> entity);
 			// TODO change to geographic feature stuff
 
 		}
@@ -55,10 +57,10 @@ public interface Visualization {
 		public interface ItemVisualization extends ARVisualization,
 				FeatureVisualization {
 			DataSourceVisualizationGL getEntityVisualization(
-					SpatialEntity entity, RenderFeatureFactory fac);
+			        SpatialEntity2<? extends Geometry> entity, RenderFeatureFactory fac);
 
 			DataSourceVisualizationCanvas getEntityVisualization(
-					SpatialEntity entity);
+			        SpatialEntity2<? extends Geometry> entity);
 
 		}
 

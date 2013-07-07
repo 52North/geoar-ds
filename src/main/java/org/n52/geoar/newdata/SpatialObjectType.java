@@ -17,7 +17,9 @@ package org.n52.geoar.newdata;
 
 import android.graphics.Bitmap;
 
-public class SpatialObjectType extends SpatialEntity {
+import com.vividsolutions.jts.geom.Geometry;
+
+public class SpatialObjectType<G extends Geometry> extends SpatialEntity2<G> {
 
 	/**
 	 * static constants
@@ -45,9 +47,8 @@ public class SpatialObjectType extends SpatialEntity {
 	 * @param geoPoint
 	 */
 	public SpatialObjectType(final String uid, final String title,
-			final String description, int latitudeE6, int longitudeE6,
-			int altitude) {
-		super(latitudeE6, longitudeE6, altitude);
+			final String description, G geometry) {
+		super(geometry);
 		this.mUid = uid;
 		this.mTitle = title;
 		this.mDescription = description;

@@ -16,7 +16,10 @@
 
 package org.n52.geoar.alg.proj;
 
-import org.n52.geoar.newdata.SpatialEntity;
+import org.n52.geoar.newdata.SpatialEntity2;
+
+import com.vividsolutions.jts.geom.Geometry;
+
 
 /**
  * Class to hold bounds in {@link MercatorProj} coordinates
@@ -81,7 +84,7 @@ public class MercatorRect {
 				dstZoom);
 	}
 
-	public boolean contains(SpatialEntity entity) {
+	public boolean contains(SpatialEntity2<? extends Geometry> entity) {
 		float leftLon = (float) MercatorProj.transformPixelXToLon(left, zoom);
 		float rightLon = (float) MercatorProj.transformPixelXToLon(right, zoom);
 		float topLat = (float) MercatorProj.transformPixelYToLat(top, zoom);

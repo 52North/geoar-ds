@@ -17,12 +17,14 @@ package org.n52.geoar.newdata;
 
 import android.location.Location;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 /**
  * 
  * @author Arne de Wall
  *
  */
-public class SpatialObservation<E extends Number> extends SpatialEntity {
+public class SpatialObservation<G extends Geometry, E extends Number> extends SpatialEntity2<G> {
 
 	/**
 	 * Constants
@@ -40,32 +42,32 @@ public class SpatialObservation<E extends Number> extends SpatialEntity {
 	 * @param longitude
 	 * @param value
 	 */
-	public SpatialObservation(final int latitudeE6, final int longitudeE6, final E value) {
-		super(latitudeE6, longitudeE6);
+	public SpatialObservation(G geometry, final E value) {
+		super(geometry);
 		this.value = value;
 	}
 
-	public SpatialObservation(final double latitude, final double longitude, final E value) {
-		super(latitude, longitude);
-		this.value = value;
-	}
-
-	public SpatialObservation(final int latitudeE6, final int longitudeE6,
-			final int altitude, final E value) {
-		super(latitudeE6, longitudeE6, altitude);
-		this.value = value;
-	}
-
-	public SpatialObservation(final double latitude, final double longitude,
-			final double altitude, final E value) {
-		super(latitude, longitude, altitude);
-		this.value = value;
-	}
-
-	@Override
-	protected void devicePositionUpdate(Location l) {
-		this.distanceToDevice = distanceTo(l.getLatitude(), l.getLongitude());
-	}
+//	public SpatialObservation(final double latitude, final double longitude, final E value) {
+//		super(latitude, longitude);
+//		this.value = value;
+//	}
+//
+//	public SpatialObservation(final int latitudeE6, final int longitudeE6,
+//			final int altitude, final E value) {
+//		super(latitudeE6, longitudeE6, altitude);
+//		this.value = value;
+//	}
+//
+//	public SpatialObservation(final double latitude, final double longitude,
+//			final double altitude, final E value) {
+//		super(latitude, longitude, altitude);
+//		this.value = value;
+//	}
+//
+//	@Override
+//	protected void devicePositionUpdate(Location l) {
+//		this.distanceToDevice = distanceTo(l.getLatitude(), l.getLongitude());
+//	}
 	
 	public E getValue() {
 		return value;

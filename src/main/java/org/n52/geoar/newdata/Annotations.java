@@ -24,194 +24,199 @@ import org.n52.geoar.alg.proj.MercatorProj;
 
 public interface Annotations {
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.TYPE)
-	public @interface DataSource {
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    public @interface DataSource {
 
-		/**
-		 * The human readable name of a datasource
-		 * 
-		 * @return
-		 */
-		Settings.Name name();
+        /**
+         * The human readable name of a datasource
+         * 
+         * @return
+         */
+        Settings.Name name();
 
-		/**
-		 * Describes a datasource
-		 * 
-		 * @return
-		 */
-		String description() default "";
+        /**
+         * Describes a datasource
+         * 
+         * @return
+         */
+        String description() default "";
 
-		/**
-		 * Gets the {@link MercatorProj} zoom to use for the spatial index of
-		 * the {@link MeasurementManager}
-		 * 
-		 * @return
-		 */
-		byte cacheZoomLevel() default 12;
+        /**
+         * Gets the {@link MercatorProj} zoom to use for the spatial index of
+         * the {@link MeasurementManager}
+         * 
+         * @return
+         */
+        byte cacheZoomLevel() default 12;
 
-		/**
-		 * Minimum zoom level required to be used in the map view
-		 * 
-		 * @return
-		 */
-		byte minZoomLevel() default 10;
+        /**
+         * Minimum zoom level required to be used in the map view
+         * 
+         * @return
+         */
+        byte minZoomLevel() default 10;
 
-		/**
-		 * Maximum zoom level to be used in the map view
-		 * 
-		 * @return
-		 */
-		byte maxZoomLevel() default Byte.MAX_VALUE;
+        /**
+         * Maximum zoom level to be used in the map view
+         * 
+         * @return
+         */
+        byte maxZoomLevel() default Byte.MAX_VALUE;
 
-		/**
-		 * Gets the interval after which data has to get rerequested
-		 * 
-		 * @return
-		 */
-		long minReloadInterval() default -1;
-	}
+        /**
+         * Gets the interval after which data has to get rerequested
+         * 
+         * @return
+         */
+        long minReloadInterval() default -1;
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.TYPE)
-	public @interface SupportedVisualization {
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    public @interface SupportedVisualization {
 
-		Class<? extends Visualization>[] visualizationClasses();
-	}
+        Class<? extends Visualization>[] visualizationClasses();
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.FIELD)
-	public @interface SystemService {
-		String value();
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    public @interface SystemService {
+        String value();
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.FIELD)
-	public @interface SharedHttpClient {
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    public @interface SharedHttpClient {
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.FIELD)
-	public @interface PluginContext {
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    public @interface SharedGeometryFactory {
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
-	public @interface PostConstruct {
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    public @interface PluginContext {
+    }
 
-	/**
-	 * Annotates a method to use to get the name of a data source at runtime.
-	 * This is relevant for multi-instance data sources.
-	 */
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
-	public @interface NameCallback {
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    public @interface PostConstruct {
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.FIELD)
-	public @interface Setting {
-	}
+    /**
+     * Annotates a method to use to get the name of a data source at runtime.
+     * This is relevant for multi-instance data sources.
+     */
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    public @interface NameCallback {
+    }
 
-	/**
-	 * Indicates a method to be called after settings of an object got changed
-	 * by GeoAR
-	 */
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.METHOD)
-	public @interface PostSettingsChanged {
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    public @interface Setting {
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.TYPE)
-	public @interface DefaultInstances {
-		DefaultSettingsSet[] value();
-	}
+    /**
+     * Indicates a method to be called after settings of an object got changed
+     * by GeoAR
+     */
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
+    public @interface PostSettingsChanged {
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.ANNOTATION_TYPE)
-	public @interface DefaultSettingsSet {
-		DefaultSetting[] value();
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.TYPE)
+    public @interface DefaultInstances {
+        DefaultSettingsSet[] value();
+    }
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.ANNOTATION_TYPE)
-	public @interface DefaultSetting {
-		String value();
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.ANNOTATION_TYPE)
+    public @interface DefaultSettingsSet {
+        DefaultSetting[] value();
+    }
 
-		String name();
-	}
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.ANNOTATION_TYPE)
+    public @interface DefaultSetting {
+        String value();
 
-	public interface Settings {
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface Name {
-			/**
-			 * Name of the parameter
-			 * 
-			 * @return
-			 */
-			String value() default "";
+        String name();
+    }
 
-			int resId() default -1;
-		}
+    public interface Settings {
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.FIELD)
+        public @interface Name {
+            /**
+             * Name of the parameter
+             * 
+             * @return
+             */
+            String value() default "";
 
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface Min {
-			/**
-			 * Minimum value of the parameter
-			 * 
-			 * @return
-			 */
-			String value();
-		}
+            int resId() default -1;
+        }
 
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface Max {
-			/**
-			 * Maximum value of the parameter
-			 * 
-			 * @return
-			 */
-			String value();
-		}
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.FIELD)
+        public @interface Min {
+            /**
+             * Minimum value of the parameter
+             * 
+             * @return
+             */
+            String value();
+        }
 
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface NoValue {
-			/**
-			 * Text to show for null value
-			 * 
-			 * @return
-			 */
-			String value();
-		}
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.FIELD)
+        public @interface Max {
+            /**
+             * Maximum value of the parameter
+             * 
+             * @return
+             */
+            String value();
+        }
 
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface NotNull {
-		}
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.FIELD)
+        public @interface NoValue {
+            /**
+             * Text to show for null value
+             * 
+             * @return
+             */
+            String value();
+        }
 
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface Temporal {
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.FIELD)
+        public @interface NotNull {
+        }
 
-			public enum TemporalType {
-				DATE, TIME, DATETIME
-			};
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.FIELD)
+        public @interface Temporal {
 
-			TemporalType value();
-		}
+            public enum TemporalType {
+                DATE, TIME, DATETIME
+            };
 
-		@Retention(RetentionPolicy.RUNTIME)
-		@Target(ElementType.FIELD)
-		public @interface Group {
-			String value();
-		}
+            TemporalType value();
+        }
 
-	}
+        @Retention(RetentionPolicy.RUNTIME)
+        @Target(ElementType.FIELD)
+        public @interface Group {
+            String value();
+        }
+
+    }
 
 }
