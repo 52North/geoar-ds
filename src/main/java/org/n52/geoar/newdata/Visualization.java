@@ -19,6 +19,7 @@ import org.n52.geoar.newdata.vis.DataSourceVisualization.DataSourceVisualization
 import org.n52.geoar.newdata.vis.DataSourceVisualization.DataSourceVisualizationGL;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,47 +28,56 @@ import com.vividsolutions.jts.geom.Geometry;
 
 public interface Visualization {
 
-	interface FeatureVisualization {
-		String getTitle(SpatialEntity2<? extends Geometry> entity);
+    interface FeatureVisualization {
+        String getTitle(SpatialEntity2<? extends Geometry> entity);
 
-		String getDescription(SpatialEntity2<? extends Geometry> entity);
+        String getDescription(SpatialEntity2<? extends Geometry> entity);
 
-		View getFeatureView(SpatialEntity2<? extends Geometry> entity, View convertView,
-				ViewGroup parentView, Context activityContext);
+        View getFeatureView(SpatialEntity2<? extends Geometry> entity,
+                View convertView, ViewGroup parentView, Context activityContext);
 
-		View getFeatureDetailView(SpatialEntity2<? extends Geometry> entity, View convertView,
-				ViewGroup parentView, Context activityContext);
-	}
+        View getFeatureDetailView(SpatialEntity2<? extends Geometry> entity,
+                View convertView, ViewGroup parentView, Context activityContext);
+    }
 
-	public interface MapVisualization extends Visualization {
+    public interface MapVisualization extends Visualization {
 
-		public interface ItemVisualization extends MapVisualization,
-				FeatureVisualization {
-			Drawable getDrawableForEntity(SpatialEntity2<? extends Geometry> entity);
-			// TODO change to geographic feature stuff
+        public interface ItemVisualization extends MapVisualization,
+                FeatureVisualization {
+            Drawable getDrawableForEntity(
+                    SpatialEntity2<? extends Geometry> entity);
+            // TODO change to geographic feature stuff
 
-		}
+        }
 
-		public interface RasterVisualization extends MapVisualization {
-			// TODO
-		}
-	}
+        public interface GeometryVisualization extends MapVisualization,
+                FeatureVisualization {
+            Paint getOutlinePaint(SpatialEntity2<? extends Geometry> entity);
 
-	public interface ARVisualization extends Visualization {
-		public interface ItemVisualization extends ARVisualization,
-				FeatureVisualization {
-			DataSourceVisualizationGL getEntityVisualization(
-			        SpatialEntity2<? extends Geometry> entity, RenderFeatureFactory fac);
+            Paint getStrokePaint(SpatialEntity2<? extends Geometry> entity);
+        }
 
-			DataSourceVisualizationCanvas getEntityVisualization(
-			        SpatialEntity2<? extends Geometry> entity);
+        public interface RasterVisualization extends MapVisualization {
+            // TODO
+        }
+    }
 
-		}
+    public interface ARVisualization extends Visualization {
+        public interface ItemVisualization extends ARVisualization,
+                FeatureVisualization {
+            DataSourceVisualizationGL getEntityVisualization(
+                    SpatialEntity2<? extends Geometry> entity,
+                    RenderFeatureFactory fac);
 
-		public interface RasterVisualization extends ARVisualization {
-			// TODO
-		}
+            DataSourceVisualizationCanvas getEntityVisualization(
+                    SpatialEntity2<? extends Geometry> entity);
 
-	}
+        }
+
+        public interface RasterVisualization extends ARVisualization {
+            // TODO
+        }
+
+    }
 
 }

@@ -19,26 +19,28 @@ import java.io.Serializable;
 
 import android.location.Location;
 
+import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Point;
 
 /**
  * 
  * @author Arne de Wall <a.dewall@52North.org>
- *
+ * 
  */
-public class SpatialEntity2<G extends Geometry> implements LocationUpdateListener, Serializable,
-        Cloneable {
+public class SpatialEntity2<G extends Geometry> implements
+        LocationUpdateListener, Serializable, Cloneable {
     private static final long serialVersionUID = 1L;
-    
+
     protected G geometry;
+    protected Envelope envelope;
     protected float[] relPositionVec;
     protected boolean isVisible;
 
-    public SpatialEntity2(G geometry){
+    public SpatialEntity2(G geometry) {
         this.geometry = geometry;
     }
-    
+
     @Override
     public void devicePositionUpdate(Location l, boolean changeViewToAR) {
         if (isVisible || changeViewToAR) {
@@ -47,20 +49,20 @@ public class SpatialEntity2<G extends Geometry> implements LocationUpdateListene
             isVisible = true;
         }
     }
-    
-    public int distanceTo(final double otherLat, final double otherLon){
+
+    public int distanceTo(final double otherLat, final double otherLon) {
         Point p = geometry.getCentroid();
         float[] res = new float[1];
         Location.distanceBetween(p.getY(), p.getX(), otherLat, otherLon, res);
         return (int) res[0];
     }
-    
+
     private void calculateRelativePositionVector(final int deviceLatitudeE6,
             final int deviceLongitudeE6, final int altitude) {
         calculateRelativePositionVector(deviceLatitudeE6 / 1E6,
                 deviceLongitudeE6 / 1E6, altitude);
     }
-    
+
     /**
      * Calculates the relative virtual position vector from device position to
      * the position of the {@link SpatialEntity}.
@@ -75,10 +77,10 @@ public class SpatialEntity2<G extends Geometry> implements LocationUpdateListene
     private void calculateRelativePositionVector(final double otherLatitude,
             final double otherLongitude, final double otherAltitude) {
         final Point p = geometry.getCentroid();
-        
+
         final double thisLatitude = p.getY();
         final double thisLongitude = p.getX();
-        final double thisAltitude = 0; 
+        final double thisAltitude = 0;
 
         float[] x = new float[1]; // x - direction of vector
         Location.distanceBetween(otherLatitude, otherLongitude, otherLatitude,
@@ -105,6 +107,12 @@ public class SpatialEntity2<G extends Geometry> implements LocationUpdateListene
         return geometry;
     }
 
+    public Envelope getEnvelope() {
+        if (this.envelope == null)
+            this.envelope = geometry.getEnvelopeInternal();
+        return envelope;
+    }
+
     public void setGeometry(G geometry) {
         this.geometry = geometry;
     }
@@ -124,17 +132,17 @@ public class SpatialEntity2<G extends Geometry> implements LocationUpdateListene
     public void setVisible(boolean isVisible) {
         this.isVisible = isVisible;
     }
-    
-    public double getLongitude(){
+
+    public double getLongitude() {
         return this.geometry.getCentroid().getCoordinate().x;
     }
-    
-    public double getLatitude(){
+
+    public double getLatitude() {
         return this.geometry.getCentroid().getCoordinate().y;
     }
-    
-    public double getAltitude(){
+
+    public double getAltitude() {
         return this.geometry.getCentroid().getCoordinate().z;
     }
-    
+
 }
