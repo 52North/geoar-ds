@@ -7,16 +7,64 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>GeoAR Data Source Library</name>
-	<description>...</description>
-
+	<description>Datasource API for GeoAR</description>
 
 	<url>http://52north.org/android</url>
 	<inceptionYear>2012</inceptionYear>
+	
 	<organization>
 		<name>52°North Initiative for Geospatial Open Source Software GmbH</name>
 		<url>http://52north.org</url>
 	</organization>
 
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+
+	<mailingLists>
+		<mailingList>
+			<name>Geostatistics Community Mailing List</name>
+			<subscribe>http://list.52north.org/mailman/listinfo/geostatistics</subscribe>
+			<unsubscribe>http://list.52north.org/mailman/listinfo/geostatistics</unsubscribe>
+			<post>geostatistics@52north.org</post>
+			<archive>http://list.52north.org/pipermail/geostatistics</archive>
+			<otherArchives>
+				<otherArchive>http://geostatistics.forum.52north.org</otherArchive>
+			</otherArchives>
+		</mailingList>
+	</mailingLists>
+	
+	<developers>
+		<developer>
+			<name>Arne de Wall</name>
+			<email>a.dewall@52north.org</email>
+			<organization>${project.organization.name}</organization>
+			<organizationUrl>${project.organization.url}</organizationUrl>
+			<timezone>GMT+1</timezone>
+			<id>dewall</id>
+		</developer>
+		<developer>
+			<name>Holger Hopmann</name>
+			<email>h.hopmann@52north.org</email>
+			<organization>${project.organization.name}</organization>
+			<organizationUrl>${project.organization.url}</organizationUrl>
+			<timezone>GMT+1</timezone>
+			<id>hopmann</id>
+		</developer>
+		<developer>
+			<name>Daniel Nüst</name>
+			<email>d.nuest@52north.org</email>
+			<organization>${project.organization.name}</organization>
+			<organizationUrl>${project.organization.url}</organizationUrl>
+			<timezone>GMT+1</timezone>
+			<id>nuest</id>
+		</developer>
+	</developers>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
@@ -30,19 +78,6 @@
 			<version>1.8</version>
 		</dependency>
 	</dependencies>
-	<!-- <scm> -->
-	<!-- <connection>scm:svn:https://svn.52north.org/svn/projects/android/geoar/trunk</connection> -->
-	<!-- </scm> -->
-
-	<licenses>
-		<license>
-			<name>Apache 2</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
-		</license>
-	</licenses>
-
 
 	<build>
 		<plugins>
