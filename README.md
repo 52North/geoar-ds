@@ -4,7 +4,7 @@ This project provides the API and common classes for implementing datasources fo
 
 ## Documentation
 
-https://wiki.52north.org/bin/view/Projects/GeoAR
+https://wiki.52north.org/bin/view/Projects/GeoARDatasource
 
 ## License
 
