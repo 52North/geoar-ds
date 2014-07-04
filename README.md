@@ -22,6 +22,8 @@ GeoAR is published under Apache Software License, Version 2.0.
 
 Used libraries are listed in the NOTICE file.
 
-## Contact
+## Support / Contact
 
-Daniel Nüst (d.nuest@52north.org) 
+If you have questions using or developing GeoAR and it's projects, please contact the Geostatistics Community mailing list or the synced forum at http://list.52north.org/mailman/listinfo/geostatistics respectively http://geostatistics.forum.52north.org/. If you want to report bugs or ask questions related to the code, please submit an issue at https://github.com/52North/geoar-app/issues.
+
+Project manager: Daniel Nüst (d.nuest@52north.org) 
