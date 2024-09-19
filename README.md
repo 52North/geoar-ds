@@ -1,3 +1,7 @@
+# ARCHIVED
+
+This project is no longer maintained and will not receive any further updates. If you plan to continue using it, please be aware that future security issues will not be addressed.
+
 # GeoAR Datasource API
 
 This project provides the API and common classes for implementing datasources for the geolocation augmented reality browser GeoAR.
